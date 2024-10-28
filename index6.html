@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dictionary Lookup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      /* This is your shelf */
+      justify-content: center;
+      /* Toys are centered along the main axis (left to right) */
+      align-items: center;
+      padding: 20px;
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 300;
+    }
+
+    input,
+    button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+
+    }
+
+    .response {
+      margin-top: 20px;
+      padding: 10px;
+      width: 50%;
+      border: 1px solid #ccc;
+      min-width: 200;
+      max-width: 400px;
+      background-color: #fff;
+      max-height: 200px;
+      overflow-y: auto;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Dictionary Lookup</h1>
+  </header>
+  <main>
+    <input type="text" id="wordInput" placeholder="Enter a word">
+    <button onclick="makeRequest()">Look Up Word</button>
+    <div class="response" id="responseText"></div>
+  </main>
+  <script>
+    function makeRequest() {
+      const word = document.getElementById('wordInput').value;
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://api.dictionaryapi.dev/api/v2/entries/en/' + word, true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          document.getElementById('responseText').innerText = xhr.responseText.word;
+        } else {
+          document.getElementById('responseText').innerText = 'Request failed. Status: ' + xhr.status;
+        }
+      };
+      xhr.send();
+    }
+  </script>
+</body>
+
+</html>
+<script src="loops.js"></script>
