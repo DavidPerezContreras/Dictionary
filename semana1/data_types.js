@@ -20,7 +20,7 @@ let objectExample = { name: "Alice", age: 25 };
 let undefinedExample;
 undefinedExample = 10; // Just to show it's initially undefined
 
-// Null: for intentionally absent values
+// Null: for intentionally non-existing values
 let nullExample = null;
 
 // Symbol: for unique identifiers
